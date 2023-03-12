@@ -142,43 +142,43 @@ public class HomeWork14 {
 
     public static void main(String[] args) {
         // Task 1
-//        Integer[] arraySource = {0, 0, 0, 1, 1, 2, 2, 5, 10, 10};
-//        System.out.println("Исходный массив:");
-//        System.out.println(Arrays.toString(arraySource));
-//
-//        long timeStart = System.currentTimeMillis();
-//        int roundCount = 10_000_000; // количество циклов, для того, чтобы увидеть какой алгоритм быстрее
-//        // алгоритм сдвигом массива
-//        for (int i = 0; i < roundCount; i++) {
-//            removeDuplicatesByArray(arraySource);
-//        }
-//        Integer[] resultArray = removeDuplicatesByArray(arraySource);
-//        System.out.println("Обработка с помощью сдвига массива:");
-//        System.out.print(Arrays.toString(resultArray) + " Результат: " + findNotNullNumberInArray(resultArray) + ".");
-//        System.out.printf(" Время : %.0f%n",
-//                (double) (System.currentTimeMillis() - timeStart));
-//
-//        // алгоритм списком
-//        timeStart = System.currentTimeMillis();
-//        for (int i = 0; i < roundCount; i++) {
-//            removeDuplicatesByList(arraySource);
-//        }
-//        resultArray = removeDuplicatesByList(arraySource);
-//        System.out.println("Обработка с помощью списка:");
-//        System.out.print(Arrays.toString(resultArray) + " Результат: " + resultArray.length + ".");
-//        System.out.printf(" Время : %.0f%n%n",
-//                (double) (System.currentTimeMillis() - timeStart));
-//
-//        // алгоритм сетом (набором)
-//        timeStart = System.currentTimeMillis();
-//        for (int i = 0; i < roundCount; i++) {
-//            removeDuplicatesBySet(arraySource);
-//        }
-//        resultArray = removeDuplicatesBySet(arraySource);
-//        System.out.println("Обработка с помощью сета (набора):");
-//        System.out.print(Arrays.toString(resultArray) + " Результат: " + resultArray.length + ".");
-//        System.out.printf(" Время : %.0f%n%n",
-//                (double) (System.currentTimeMillis() - timeStart));
+        Integer[] arraySource = {0, 0, 0, 1, 1, 2, 2, 5, 10, 10};
+        System.out.println("Исходный массив:");
+        System.out.println(Arrays.toString(arraySource));
+
+        long timeStart = System.currentTimeMillis();
+        int roundCount = 10_000_000; // количество циклов, для того, чтобы увидеть какой алгоритм быстрее
+        // алгоритм сдвигом массива
+        for (int i = 0; i < roundCount; i++) {
+            removeDuplicatesByArray(arraySource);
+        }
+        Integer[] resultArray = removeDuplicatesByArray(arraySource);
+        System.out.println("Обработка с помощью сдвига массива:");
+        System.out.print(Arrays.toString(resultArray) + " Результат: " + findNotNullNumberInArray(resultArray) + ".");
+        System.out.printf(" Время : %.0f%n",
+                (double) (System.currentTimeMillis() - timeStart));
+
+        // алгоритм списком
+        timeStart = System.currentTimeMillis();
+        for (int i = 0; i < roundCount; i++) {
+            removeDuplicatesByList(arraySource);
+        }
+        resultArray = removeDuplicatesByList(arraySource);
+        System.out.println("Обработка с помощью списка:");
+        System.out.print(Arrays.toString(resultArray) + " Результат: " + resultArray.length + ".");
+        System.out.printf(" Время : %.0f%n%n",
+                (double) (System.currentTimeMillis() - timeStart));
+
+        // алгоритм сетом (набором)
+        timeStart = System.currentTimeMillis();
+        for (int i = 0; i < roundCount; i++) {
+            removeDuplicatesBySet(arraySource);
+        }
+        resultArray = removeDuplicatesBySet(arraySource);
+        System.out.println("Обработка с помощью сета (набора):");
+        System.out.print(Arrays.toString(resultArray) + " Результат: " + resultArray.length + ".");
+        System.out.printf(" Время : %.0f%n%n",
+                (double) (System.currentTimeMillis() - timeStart));
 
         // Task 2
         System.out.println(findOneByArray(new Integer[]{2, 2, 1, 3, 5, 3, 3, 5}));
