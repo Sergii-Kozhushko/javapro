@@ -55,7 +55,7 @@ public class HomeWork14 {
                 countNull++;
             }
             // если прошлись по всему массиву
-            if (index == array.length - 1 || array[countNull] == null || array[index + 1] == null) {
+            if (index == array.length - 1 || array[index + 1] == null) {
                 return array;
             }
             // если идут подряд 3 одинаковых элемента, то индекс не увеличивать,
@@ -84,6 +84,58 @@ public class HomeWork14 {
         return result;
     }
 
+    public static Integer[] removeDuplicatesByXOR(Integer[] array) {
+        List<Integer> list = Arrays.asList(array);
+
+        ArrayList<Integer> arr = new ArrayList<>();
+        for (int i = 0, j = 1; i < list.size() - 1; i++, j++) {
+            if ((list.get(i) ^ list.get(j)) != 0) {
+                arr.add(list.get(i));
+            }
+            if ((list.get(i) ^ list.get(j)) != 0 && j == list.size() - 1) {
+                arr.add(list.get(j));
+            }
+        }
+        for (int l = arr.size(); l < list.size(); l++) {
+            arr.add(null);
+        }
+        return (Integer[]) arr.toArray(new Integer[arr.size()]);
+    }
+
+    public static Integer[] removeDuplicatesBySimpleEqual(Integer[] array) {
+
+        List<Integer> list = Arrays.asList(array);
+
+        ArrayList<Integer> arr = new ArrayList<>();
+        for (int i = 0, j = 1; i < list.size() - 1; i++, j++) {
+            if (list.get(i) != list.get(j)) {
+                arr.add(list.get(i));
+            }
+//            if (list.get(i) != list.get(j) && j == list.size() - 1) {
+//                arr.add(list.get(j));
+//            }
+        }
+        for (int l = arr.size(); l < list.size(); l++) {
+            arr.add(null);
+        }
+        return (Integer[]) arr.toArray(new Integer[arr.size()]);
+
+    }
+
+    public static Integer[] removeDuplicatesByCompareNext(Integer[] array) {
+        Integer[] result = new Integer[array.length];
+        int count = 0;
+        for (int i = 0; i < array.length-1; i++) {
+            if (array[i] != array[i+1]) {
+                result[count] = array[i];
+                count++;
+            }
+        }
+        result[count] = array[array.length-1];
+        return result;
+   }
+
+
     //    Task 2.
 //    Given a non-empty array of integers nums, every element appears twice except for one.
 //    Find that single one.
@@ -97,42 +149,32 @@ public class HomeWork14 {
         for (int i = 0; i < array.length; i++) {
             foundRepeats = false;
             for (int j = 0; j < array.length; j++) {
-                if (array[i] == array[j] && i != j){
+                if (array[i] == array[j] && i != j) {
                     foundRepeats = true;
                     break;
                 }
             }
-            if (!foundRepeats){
+            if (!foundRepeats) {
                 return array[i];
             }
         }
         return 0;
 
-//        ArrayList<Integer> list = new ArrayList<>(asList(array));
-//        Set<Integer> set = new HashSet<>(Arrays.asList(array));
-//        System.out.println(set);
-
-//        for (int i = 0; i < array.length; i++) {
-//            if (set.contains(array[i])){
-//                list.remove(array[i]);
-//                if (list)
-//            }
-//
-//        }
     }
 
     // {2, 2, 1, 1, 0, 10, 0}
     // вспомогательный метод, находит количество вхождений числа в массив
-    public static int findElementCount(Integer[] array, int toFind){
+    public static int findElementCount(Integer[] array, int toFind) {
         int result = 0;
         for (int i = 0; i < array.length; i++) {
             if (array[i] == toFind) result++;
         }
         return result;
     }
+
     // Таск 2. формирует мапу, где ключ - количество вхождений, а значение сам элемент.
     // Красиво возвращаем результат
-    public static int findOneByMap(Integer[] array){
+    public static int findOneByMap(Integer[] array) {
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < array.length; i++) {
             map.put(findElementCount(array, array[i]), array[i]);
@@ -142,8 +184,8 @@ public class HomeWork14 {
 
     public static void main(String[] args) {
         // Task 1
-        Integer[] arraySource = {0, 0, 0, 1, 1, 2, 2, 5, 10, 10};
-        System.out.println("Исходный массив:");
+        Integer[] arraySource = {0, 0, 0, 0, 1, 1, 2, 2, 5, 10, 10};
+        System.out.print("Исходный массив: ");
         System.out.println(Arrays.toString(arraySource));
 
         long timeStart = System.currentTimeMillis();
@@ -153,9 +195,9 @@ public class HomeWork14 {
             removeDuplicatesByArray(arraySource);
         }
         Integer[] resultArray = removeDuplicatesByArray(arraySource);
-        System.out.println("Обработка с помощью сдвига массива:");
+        System.out.println("1. Обработка с помощью сдвига массива:");
         System.out.print(Arrays.toString(resultArray) + " Результат: " + findNotNullNumberInArray(resultArray) + ".");
-        System.out.printf(" Время : %.0f%n",
+        System.out.printf(" Время : %.0f%n%n",
                 (double) (System.currentTimeMillis() - timeStart));
 
         // алгоритм списком
@@ -164,7 +206,7 @@ public class HomeWork14 {
             removeDuplicatesByList(arraySource);
         }
         resultArray = removeDuplicatesByList(arraySource);
-        System.out.println("Обработка с помощью списка:");
+        System.out.println("2. Обработка с помощью списка:");
         System.out.print(Arrays.toString(resultArray) + " Результат: " + resultArray.length + ".");
         System.out.printf(" Время : %.0f%n%n",
                 (double) (System.currentTimeMillis() - timeStart));
@@ -175,10 +217,46 @@ public class HomeWork14 {
             removeDuplicatesBySet(arraySource);
         }
         resultArray = removeDuplicatesBySet(arraySource);
-        System.out.println("Обработка с помощью сета (набора):");
+        System.out.println("3. Обработка с помощью сета (набора):");
         System.out.print(Arrays.toString(resultArray) + " Результат: " + resultArray.length + ".");
         System.out.printf(" Время : %.0f%n%n",
                 (double) (System.currentTimeMillis() - timeStart));
+
+        //алгоритм XOR
+        timeStart = System.currentTimeMillis();
+        for (int i = 0; i < roundCount; i++) {
+            removeDuplicatesByXOR(arraySource);
+        }
+        resultArray = removeDuplicatesByXOR(arraySource);
+        System.out.println("4. Обработка с помощью цикла с двумя индексами + XOR:");
+        System.out.print(Arrays.toString(resultArray) + " Результат: " + findNotNullNumberInArray(resultArray) + ".");
+        System.out.printf(" Время : %.0f%n%n",
+                (double) (System.currentTimeMillis() - timeStart));
+
+        //алгоритм Простосравнение
+        timeStart = System.currentTimeMillis();
+        for (int i = 0; i < roundCount; i++) {
+            removeDuplicatesBySimpleEqual(arraySource);
+        }
+        resultArray = removeDuplicatesBySimpleEqual(arraySource);
+        System.out.println("5. Обработка с помощью цикла с двумя индексами + сравнение:");
+        System.out.print(Arrays.toString(resultArray) + " Результат: " + findNotNullNumberInArray(resultArray) + ".");
+        System.out.printf(" Время : %.0f%n%n",
+                (double) (System.currentTimeMillis() - timeStart));
+
+        // Массив, спавнение соседних
+        timeStart = System.currentTimeMillis();
+        for (int i = 0; i < roundCount; i++) {
+            removeDuplicatesByCompareNext(arraySource);
+        }
+
+        resultArray = removeDuplicatesByCompareNext(arraySource);
+        System.out.println("6. Обработка с помощью массива и сравнения соседних элементов:");
+        System.out.print(Arrays.toString(resultArray) + " Результат: " + findNotNullNumberInArray(resultArray) + ".");
+        System.out.printf(" Время : %.0f%n%n",
+                (double) (System.currentTimeMillis() - timeStart));
+
+
 
         // Task 2
         System.out.println(findOneByArray(new Integer[]{2, 2, 1, 3, 5, 3, 3, 5}));
