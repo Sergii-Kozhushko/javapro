@@ -8,11 +8,7 @@
 package algorythm;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 public class Backpack {
 
     // метод возвращает
@@ -20,7 +16,7 @@ public class Backpack {
     static List<Thing> findThings(int bpCapacity, List<Thing> things) {
         List<Thing> currentList = new ArrayList<>();
         List<Thing> resultList = new ArrayList<>();
-        int currentValueSum = 0, maxValueSum = 0, currentWeightSum = 0;
+        int currentValueSum, maxValueSum = 0, currentWeightSum;
         // вычисляем число, которое имеет все включеннеы биты по размеру списка 3 ->111
         int maxBits = (int) Math.pow(2,things.size());
         String str;
@@ -77,7 +73,6 @@ public class Backpack {
         findThings(10, list);
 
     }
-
 }
 
 class Thing {
