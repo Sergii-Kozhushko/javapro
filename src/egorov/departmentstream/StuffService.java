@@ -24,8 +24,9 @@ public class StuffService {
                case 2-> "Женский";
                default -> "Не определился";
             };
-
-            stuff.add(new Employee("Name " + j, new Random().nextInt(70),new Random().nextInt(3000), sexString));
+            int age = 18 + new Random().nextInt( 40);
+            int salary = 1200 + new Random().nextInt( 4000);
+            stuff.add(new Employee("Name " + j, age ,salary, sexString));
          }
          Department department = new Department(stuff, "Отдел №" + i);
          result.add(department);
@@ -37,8 +38,7 @@ public class StuffService {
    // и вывести на эеран всех сотрудников(имена и фамилии) зп которых больше 2500
    public static void printStuff(List<Department> departments){
       departments.stream()
-              .map(x->x.getStuffList())
-              .flatMap(x->x.stream())
+              .flatMap(x->x.getStuffList().stream())
               .filter(x->x.getSalary()>2500)
               .forEach(System.out::println);
 
