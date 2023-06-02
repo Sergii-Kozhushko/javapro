@@ -1,5 +1,5 @@
 /**
- * HomeWork.java
+ * ABC.java
  *
  * @author Sergii Kozhushko, sergiikozhushko@gmail.com
  * Date of creation: 02-Jun-2023 07:19
@@ -9,7 +9,7 @@ package loshmanov.thread;
 
 /*1. Создать три потока, каждый из которых выводит определенную букву (A, B и C)
         5 раз, порядок должен быть именно ABСABСABС. Используйте wait/notify/notifyAll.*/
-public class HomeWork {
+public class ABC {
     public static void main(String[] args) {
         Integer commonObj = 1;
         Common common = new Common();
