@@ -15,9 +15,9 @@ public class Car implements Runnable {
     private static int CARS_COUNT = 0;
 
     private static int placeCount = 1;
-    private String name;
-    private int speed;
-    private Race race;
+    private final String name;
+    private final int speed;
+    private final Race race;
 
     private String state = "";
 
